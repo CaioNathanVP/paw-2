@@ -31,14 +31,23 @@ import { MessageService } from './message.service';
 
 export class MessageListComponent implements OnInit {
  
-     messageS: Message[] =[ new Message("Texto 01 da Mensagem - LIST-Comp", "ViniciusRosalen"),
-                            new Message("Texto 02 da Mensagem - LIST-Comp", "RosalenSilva"),
-                            new Message("Texto 03 da Mensagem - LIST-Comp", "SilvaVinicius")
-                           ];
+     messageS: Message[] =[];
     
     constructor (private messageService: MessageService) {}
 
     ngOnInit(): void {
-      this.messageS = this.messageService.getMessage();
+      this.messageService.getMessage().subscribe({
+        next: (dadosSucesso: any) => {
+          console.log(dadosSucesso.myMsgSucesso);
+          console.log({content: dadosSucesso.objSMessageSRecuperadoS[0].content});
+          console.log({id: dadosSucesso.objSMessageSRecuperadoS[0].messageId});
+
+          this.messageS = dadosSucesso.objSMessageSRecuperadoS;
+        },
+        error: (dadosErro) => {
+          console.log(`$== !!Error (subscribe): - ${dadosErro.info_extra} ==`);
+          console.log(dadosErro);
+          }
+      })
     }
 }
