@@ -1,0 +1,31 @@
+/* page-not-found.component.css */
+div {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: red;
+    font-size: 56px;
+    margin-top: 50px;
+}
+
+p {
+    font-size: 24px;
+}
+
+img {
+    width: 150px;
+    margin-top: 20px;
+}
+
+a {
+    font-size: 18px;
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
